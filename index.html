@@ -1,125 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iTriperary - Trip Planning Made Simple</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iTriperary</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div class="features-page" id="features-page">
-        <div class="header">
-            <h1>iTriperary</h1>
-            <p>Plan your trips together, effortlessly</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <h2>Trip Management</h2>
-                <div class="trip-form">
-                    <input type="text" id="tripName" placeholder="Trip Name">
-
-                    <input type="text" id="tripDestination" placeholder="Enter Destination">
-
-                    <div class="date-inputs">
-                        <div class="date-input">
-                            <label for="startDate">Start Date</label>
-                            <input type="date" id="startDate">
-                        </div>
-                        <div class="date-input">
-                            <label for="endDate">End Date</label>
-                            <input type="date" id="endDate">
-                        </div>
-                    </div>
-                    <button onclick="createTrip()">Create Trip</button>
-                </div>
-                <div class="trip-list" id="tripList"></div>
-            </div>
-        </div>
+  <header class="top-navbar">
+    <div class="navbar-left">iTriperary</div>
+    <div class="navbar-right">
+      <a href="#" id="login-btn">log in</a>
+      <span>|</span>
+      <a href="#" id="signup-btn">sign up</a>
     </div>
+  </header>
 
-    <div class="trip-details-page" id="trip-details-page" style="display: none;">
-        <div class="header">
-            <h1 id="tripDetailsTitle"></h1>
-            <p id="tripDetailsDestination"></p>
-            <p id="tripDetailsDate"></p>
-            <button class="back-button" onclick="goBack()">Back to Trips</button>
+  <nav class="pill-navbar">
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="create-trip.html">Create Trip</a></li>
+      <li><a href="#">My Trips</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+  </nav>
+
+  <div class="slideshow-container">
+    <button class="slide-arrow prev-btn">❮</button>
+    <button class="slide-arrow next-btn">❯</button>
+    
+    <div class="slideshow">
+      <div class="slide active">
+        <img src="trip_images/Japan.jpg" alt="Japan">
+        <div class="slide-content">
+          <h2>Plan Your Journey to Japan</h2>
+          <p>Build, manage, and share your trip all in one place.</p>
         </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <h2>Exchange Rate Tracker</h2>
-                <div class="trip-form">
-                    <input type="number" id="amount" placeholder="Amount">
-                    <div class="currency-inputs">
-                        <div class="currency-input">
-                            <label for="fromCurrency">From</label>
-                            <select id="fromCurrency">
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="GBP">GBP</option>
-                                <option value="JPY">JPY</option>
-                                <option value="KRW">KRW</option>
-                            </select>
-                        </div>
-                        <div class="currency-input">
-                            <label for="toCurrency">To</label>
-                            <select id="toCurrency">
-                                <option value="EUR">EUR</option>
-                                <option value="USD">USD</option>
-                                <option value="GBP">GBP</option>
-                                <option value="JPY">JPY</option>
-                                <option value="KRW">KRW</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button onclick="convertCurrency()">Convert</button>
-                    <div id="conversionResult"></div>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <h2>Expense Tracker</h2>
-                <div class="trip-form">
-                    <input type="number" id="expenseAmount" placeholder="Amount">
-                    <input type="text" id="expenseDescription" placeholder="Description">
-                    <select id="expenseCategory">
-                        <option value="food">Food & Dining</option>
-                        <option value="activities">Activities & Entertainment</option>
-                        <option value="accommodation">Accommodation</option>
-                        <option value="transportation">Transportation</option>
-                        <option value="shopping">Shopping</option>
-                        <option value="miscellaneous">Miscellaneous</option>
-                    </select>
-                    <button onclick="addExpense()">Add Expense</button>
-                </div>
-                <div class="expense-summary">
-                    <div class="total-expenses">
-                        <h3>Total Expenses: $<span id="totalExpenses">0.00</span></h3>
-                    </div>
-                    <div class="expense-chart-container">
-                        <canvas id="expenseChart"></canvas>
-                    </div>
-                </div>
-                <div class="expense-list" id="expenseList"></div>
-            </div>
-
-            <div class="feature-card">
-                <h2>Weather Tracker</h2>
-                <div class="trip-form">
-                    <div class="weather-input-container">
-                        <input type="text" id="location" placeholder="Enter location" oninput="handleLocationInput()">
-                        <div id="locationDropdown"></div>
-                    </div>
-                    <div id="weatherResult"></div>
-                </div>
-            </div>
+      </div>
+      <div class="slide">
+        <img src="trip_images/Rome.jpg" alt="Rome">
+        <div class="slide-content">
+          <h2>Experience the Magic of Rome</h2>
+          <p>Explore iconic landmarks, sip espresso in piazzas, and savor every moment.</p>
         </div>
+      </div>
+      <div class="slide">
+        <img src="trip_images/New York.jpeg" alt="New York">
+        <div class="slide-content">
+          <h2>Plan Your Big Apple Escape</h2>
+          <p>Skyscrapers, shows, and city lights. Your next adventure starts in New York.</p>
+        </div>
+      </div>
     </div>
+    
+    <div class="dots-container">
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+  <div class="section-divider">
+    <div class="divider-content"></div>
+  </div>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="features-container">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-route"></i>
+        </div>
+        <h3>Create a Trip</h3>
+        <p>Plan your perfect journey with our intuitive trip creator. Add destinations, create itineraries, and organize your travel schedule with ease.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-receipt"></i>
+        </div>
+        <h3>Track Expenses</h3>
+        <p>Keep your travel budget under control. Track expenses, split costs with travel companions, and manage your spending in real-time.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <h3>Stay Informed</h3>
+        <p>Get real-time updates about your trip, weather alerts, and important travel information. Never miss a flight or reservation again.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-user-friends"></i>
+        </div>
+        <h3>Collaborate</h3>
+        <p>Plan trips together with friends and family. Share itineraries, vote on activities, and keep everyone in the loop.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+

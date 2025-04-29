@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Trips - iTriperary</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="top-navbar">
+        <div class="navbar-left">iTriperary</div>
+        <div class="navbar-right">
+            <a href="#" id="login-btn">log in</a>
+            <span>|</span>
+            <a href="#" id="signup-btn">sign up</a>
+        </div>
+    </header>
+
+    <nav class="pill-navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="create-trip.html">Create Trip</a></li>
+            <li><a href="my-trips.html" class="active">My Trips</a></li>
+            
+        </ul>
+    </nav>
+
+    <div class="my-trips-container">
+        <div class="trips-header">
+            <h2>My Trips</h2>
+            <div class="trips-filter">
+                <button class="filter-btn active" data-filter="all">All Trips</button>
+                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                <button class="filter-btn" data-filter="past">Past</button>
+            </div>
+        </div>
+
+        <div class="trips-grid">
+            <!-- Trips will be dynamically added here -->
+        </div>
+
+        <div class="no-trips-message hidden">
+            <p>You haven't created any trips yet.</p>
+            <a href="create-trip.html" class="create-trip-btn">
+                <i class="fas fa-plus-circle"></i>
+                Create Your First Trip
+            </a>
+        </div>
+    </div>
+
+    <script src="my-trips.js"></script>
+</body>
+</html> 

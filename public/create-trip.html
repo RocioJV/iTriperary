@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Trip - iTriperary</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .pac-container {
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <header class="top-navbar">
+        <div class="navbar-left">iTriperary</div>
+        <div class="navbar-right">
+            <a href="#" id="login-btn">log in</a>
+            <span>|</span>
+            <a href="#" id="signup-btn">sign up</a>
+        </div>
+    </header>
+
+    <nav class="pill-navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="create-trip.html" class="active">Create Trip</a></li>
+            <li><a href="my-trips.html">My Trips</a></li>
+            
+        </ul>
+    </nav>
+
+    <!-- Create Trip Section -->
+    <div class="create-trip-container" id="createTripSection">
+        <div class="trip-options">
+            <button class="trip-option-btn active" id="createTripBtn">
+                <i class="fas fa-plus-circle"></i>
+                Create New Trip
+            </button>
+            <button class="trip-option-btn" id="joinTripBtn">
+                <i class="fas fa-users"></i>
+                Join Existing Trip
+            </button>
+        </div>
+
+        <div class="trip-form-container" id="createTripForm">
+            <h2>Create Your Trip</h2>
+            <form class="trip-form" id="tripForm">
+                <div class="form-group">
+                    <label for="tripName">Trip Name</label>
+                    <input type="text" id="tripName" name="tripName" placeholder="Enter your trip name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <div class="destination-input">
+                        <input type="text" id="destination" placeholder="Enter destination" required>
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <div class="form-group date-range">
+                    <div class="date-input">
+                        <label for="startDate">Start Date</label>
+                        <input type="text" id="startDate" name="startDate" placeholder="Select start date" required>
+                    </div>
+                    <div class="date-input">
+                        <label for="endDate">End Date</label>
+                        <input type="text" id="endDate" name="endDate" placeholder="Select end date" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="create-trip-btn">
+                    <i class="fas fa-plane-departure"></i>
+                    Create Trip
+                </button>
+            </form>
+        </div>
+
+        <div class="trip-form-container hidden" id="joinTripForm">
+            <h2>Join a Trip</h2>
+            <form class="trip-form">
+                <div class="form-group">
+                    <label for="tripCode">Trip Code</label>
+                    <input type="text" id="tripCode" name="tripCode" placeholder="Enter trip code" required>
+                </div>
+                <button type="submit" class="join-trip-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Join Trip
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Trip Details Section -->
+    <div class="trip-details-container hidden" id="tripDetailsSection">
+        <div class="trip-details-card">
+            <h2>Trip Details</h2>
+            <div id="tripContent">
+                <div class="trip-header">
+                    <h3 id="tripNameDisplay"></h3>
+                    <span class="trip-status">Upcoming</span>
+                </div>
+                <div class="trip-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="destinationDisplay"></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span id="datesDisplay"></span>
+                    </div>
+                </div>
+                <div class="trip-actions">
+                    <button class="action-btn edit" id="editTripBtn">
+                        <i class="fas fa-edit"></i>
+                        Edit Trip
+                    </button>
+                    <button class="action-btn share">
+                        <i class="fas fa-share-alt"></i>
+                        Share Trip
+                    </button>
+                </div>
+
+                <!-- Exchange Rate Tracker -->
+                <div class="section-card exchange-rate">
+                    <h3><i class="fas fa-exchange-alt"></i> Exchange Rate Tracker</h3>
+                    <div class="exchange-form">
+                        <div class="currency-input">
+                            <select id="fromCurrency">
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="GBP">GBP</option>
+                                <option value="JPY">JPY</option>
+                            </select>
+                            <input type="number" id="amount" value="1" min="0">
+                        </div>
+                        <i class="fas fa-equals"></i>
+                        <div class="currency-result">
+                            <select id="toCurrency">
+                                <option value="EUR">EUR</option>
+                                <option value="USD">USD</option>
+                                <option value="GBP">GBP</option>
+                                <option value="JPY">JPY</option>
+                            </select>
+                            <span id="convertedAmount">0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Tracker -->
+                <div class="section-card weather-tracker">
+                    <h3><i class="fas fa-cloud-sun"></i> Weather Forecast</h3>
+                    <div class="weather-search">
+                        <div class="search-container">
+                            <input type="text" id="locationSearch" placeholder="Enter a city name">
+                            <button id="searchWeather" class="search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="weather-container">
+                        <div class="current-weather">
+                            <div class="weather-icon">
+                                <i class="fas fa-cloud-sun"></i>
+                            </div>
+                            <div class="weather-info">
+                                <div class="location">Enter a location</div>
+                                <div class="temperature">--°C</div>
+                                <div class="description">Weather information will appear here</div>
+                            </div>
+                        </div>
+                        <div class="weather-details">
+                            <div class="detail">
+                                <i class="fas fa-temperature-high"></i>
+                                <span>High</span>
+                                <span class="high">--°C</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-temperature-low"></i>
+                                <span>Low</span>
+                                <span class="low">--°C</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-tint"></i>
+                                <span>Humidity</span>
+                                <span class="humidity">--%</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-wind"></i>
+                                <span>Wind</span>
+                                <span class="wind">-- m/s</span>
+                            </div>
+                        </div>
+                        <div class="forecast-container">
+                            <!-- 5-day forecast will be added here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Voting System -->
+                <div class="section-card voting-system">
+                    <h3><i class="fas fa-vote-yea"></i> Activity Voting</h3>
+                    <div class="add-activity">
+                        <input type="text" id="newActivity" placeholder="Suggest an activity">
+                        <button id="addActivityBtn">Add Activity</button>
+                    </div>
+                    <div class="activities-list">
+                        <!-- Activities will be added here dynamically -->
+                    </div>
+                </div>
+
+                <!-- Expense Tracker -->
+                <div class="section-card expense-tracker">
+                    <h3><i class="fas fa-receipt"></i> Expense Tracker</h3>
+                    <div class="expense-form">
+                        <div class="form-group">
+                            <input type="number" id="expenseAmount" placeholder="Amount" step="0.01" min="0" required>
+                            <select id="expenseCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Food">Food</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Activities">Activities</option>
+                                <option value="Miscellaneous">Miscellaneous</option>
+                            </select>
+                            <input type="text" id="expenseDescription" placeholder="Description" required>
+                            <button id="addExpenseBtn" class="action-btn">
+                                <i class="fas fa-plus"></i> Add Expense
+                            </button>
+                        </div>
+                    </div>
+                    <div class="expense-summary">
+                        <div class="chart-container">
+                            <canvas id="expenseChart"></canvas>
+                        </div>
+                        <div class="expense-list">
+                            <h4>Recent Expenses</h4>
+                            <div id="expensesList">
+                                <!-- Expenses will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="create-trip.js"></script>
+</body>
+</html> 

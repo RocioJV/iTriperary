@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - iTriperary</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Login to iTriperary</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="signIn()">Login</button>
+  <button onclick="signUp()">Sign Up</button>
+
+  <script type="module">
+    // Import Firebase functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCUvdMHejBrYXbIWj0hgI_wvdXKj2-jJtg",
+      authDomain: "itriperary-722a8.firebaseapp.com",
+      projectId: "itriperary-722a8",
+      storageBucket: "itriperary-722a8.appspot.com",
+      messagingSenderId: "486148468596",
+      appId: "1:486148468596:web:1e555dad4513a88414d621",
+      measurementId: "G-D8B2TFC1F0"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+
+    // Sign Up function
+    window.signUp = () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Signed up!");
+          // Optional: redirect
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    };
+
+    // Sign In function
+    window.signIn = () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Logged in!");
+          window.location.href = "my-trips.html"; // Redirect after login
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    };
+  </script>
+</body>
+</html>
